@@ -1,0 +1,8 @@
+PREFIX : <http://example.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?intermediateNode
+WHERE {
+  :Alice (:friendOf|:parentOf)* ?intermediateNode .
+  ?intermediateNode (:friendOf|:parentOf)* :Dave .
+}
