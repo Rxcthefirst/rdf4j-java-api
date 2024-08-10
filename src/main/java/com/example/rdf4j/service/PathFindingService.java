@@ -32,11 +32,12 @@ public class PathFindingService {
     private final IRI FRIEND_OF = vf.createIRI("http://example.org/friendOf");
     private final IRI PARENT_OF = vf.createIRI("http://example.org/parentOf");
 
-    public void findPaths(IRI start, IRI end) {
+    public List<List<IRI>> findPaths(IRI start, IRI end) {
         List<List<IRI>> allPaths = findPaths(start, end, new LinkedList<>(), new HashSet<>(), 0);
         for (List<IRI> path : allPaths) {
             System.out.println(" -> " + String.join(" -> ", path.stream().map(IRI::toString).toArray(String[]::new)));
         }
+        return allPaths;
     }
 
     private List<List<IRI>> findPaths(IRI start, IRI end, List<IRI> path, Set<IRI> visited, int depth) {
